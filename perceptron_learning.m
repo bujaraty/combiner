@@ -40,13 +40,13 @@ for i = 1:epoch_time
     weight_second_layer = weight_second_layer + delta_weight_second_layer .* step_size;
     weight_third_layer  = weight_third_layer + delta_weight_third_layer .* step_size;
 
-    error              = evaluate_model(out3, training_targets, training_targets_frequency, sum_bias);
+    error              = calculate_error(out3, training_targets, training_targets_frequency, sum_bias);
     backprop_error     = [backprop_error, error];
     
     %Validating
     [out1, out2, out3] = forward_pass(weight_first_layer, weight_second_layer, weight_third_layer, validating_data);
 
-    error              = evaluate_model(out3, validating_targets, validating_targets_frequency, sum_bias);
+    error              = calculate_error(out3, validating_targets, validating_targets_frequency, sum_bias);
     validating_error   = [validating_error, error];
     
     %Keep track of minimum error rate

@@ -3,14 +3,14 @@ function plot_result(params_file, output_dir)
 
 load(params_file);
 
-neutral_SNP_index    = find(testing_targets == 0);
-neutral_SNP_features = testing_features(:, neutral_SNP_index);
+neutral_SNP_index    = find(test_targets == 0);
+neutral_SNP_features = test_features(:, neutral_SNP_index);
 [number_of_features number_of_neutral_samples] = size(neutral_SNP_features);
 
 [neutral_out1, neutral_out2, neutral_out3] = forward_pass(best_weight_first_layer, best_weight_second_layer, best_weight_third_layer, neutral_SNP_features);
 
-pathogenic_SNP_index    = find(testing_targets == 1);
-pathogenic_SNP_features = testing_features(:, pathogenic_SNP_index);
+pathogenic_SNP_index    = find(test_targets == 1);
+pathogenic_SNP_features = test_features(:, pathogenic_SNP_index);
 number_of_pathogenic_samples = size(pathogenic_SNP_features, 2);
 
 [pathogenic_out1, pathogenic_out2, pathogenic_out3] = forward_pass(best_weight_first_layer, best_weight_second_layer, best_weight_third_layer, pathogenic_SNP_features);
